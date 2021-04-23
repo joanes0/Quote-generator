@@ -1,0 +1,98 @@
+<html lang="en">
+    <head>
+        <!-- //meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- bootstrap stylesheet -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
+
+        <title>Random Quote Generator</title>
+
+        <script>
+            const QUOTEBANK = [
+                {
+                    quote: "The way to get started is to quit talking and begin doing.",
+                    author: "-Walt Disney"
+                },
+                {
+                    quote: "Love is always bestowed as a gift - freely, willingly and without expectation. We don't love to be loved; we love to love.",
+                    author: "-Malina"
+                },
+                {
+                    quote: "You can search throughout the entire universe for someone who is more deserving of your love and affection than you are yourself, and that person is not to be found anywhere. You yourself, as much as anybody in the entire universe deserve your love and affection",
+                    author: "-Budha"
+                },
+                {
+                    quote: "When something is important enough, you do it even if the odds are not in your favor.",
+                    author: "-Elon Musk"
+                },  {
+                    quote: "Only I can change my life. No one can do it for me.",
+                    author: "-Musk Elon"
+                },
+                {
+                    quote: "I learned that courage was not the absence of fear, but the triumph over it. The brave man is not he who does not feel afraid, but he who conquers that fear.",
+                    author: "-Nelson Mandela"
+                }
+            ];
+
+            window.onload = init;
+            function init(){
+                generateQuote
+            }
+
+            function generateQuote() {
+               let quoteSize = QUOTEBANK.length;
+               let randomIndex = Math.floor(Math.random() * quoteSize);
+               let randomQuoteData = QUOTEBANK[randomIndex];
+
+               let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text="
+               //add quote
+               let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+               twitterLink += quoteInApiFormat
+                //add author
+               let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+               twitterLink += " - " + authorInApiFormat
+
+                document.getElementById("tweet-quote").href = twitterLink;
+                document.getElementById("text").innerText = randomQuoteData.quote;
+                document.getElementById("author").innerText = randomQuoteData.author;
+            }
+        </script>
+
+        <!-- <style>
+            * {
+                font-size: 1.1rem;
+                margin: 20px 20px 20px 20px;
+                text-align: center;
+            }
+        </style> -->
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="row py-5">
+             <wrapper id="quote-box">  
+                  <div class="card">  
+                    <div class="card-body">  
+                         <h5 class="card-title">
+                             <div id="text">Text</div>
+                         </h5>
+                       <p class="card-text">
+                            <div id="author">Author</div>
+                         </p>
+                          <button id="new-quote" onClick="generateQuote();" class="btn btn-success">New Quote</button>
+                      <a href="#" id="tweet-quote" target="_blank" class="btn btn-primary">Tweet Quote</a>
+                    </div>
+                  </div>
+             </wrapper>
+            </div>
+        </div>  
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
